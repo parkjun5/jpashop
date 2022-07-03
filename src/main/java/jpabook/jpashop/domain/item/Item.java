@@ -2,7 +2,9 @@ package jpabook.jpashop.domain.item;
 
 import jpabook.jpashop.domain.Category;
 import jpabook.jpashop.exception.NotEnoughStockException;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +16,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class Item {
 
     @Id
@@ -29,11 +32,6 @@ public abstract class Item {
     private List<Category> categories = new ArrayList<>();
 
     // ==비지니스 로직 ==//
-
-    protected Item() {
-
-    }
-
     public Item(String name, int price, int stockQuantity) {
         this.name = name;
         this.price = price;
