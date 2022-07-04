@@ -1,4 +1,4 @@
-package jpabook.jpashop;
+package jpabook.jpashop.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,7 @@ public class HelloController {
 
     @GetMapping("hello")
     public String hello(Model model) {
-        model.addAttribute("data", "hello?");
+        model.addAttribute("data", "hello!!!!?");
         return "hello";
     }
 }

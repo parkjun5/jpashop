@@ -16,7 +16,6 @@ public class Book extends Item {
     private String isbn;
 
     protected Book() {
-
     }
 
     public Book(String name, int price, int stockQuantity) {

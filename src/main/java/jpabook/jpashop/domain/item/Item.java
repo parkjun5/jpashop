@@ -5,8 +5,6 @@ import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public abstract class Item {
     private List<Category> categories = new ArrayList<>();
 
     // ==비지니스 로직 ==//
-    public Item(String name, int price, int stockQuantity) {
+    protected Item(String name, int price, int stockQuantity) {
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
