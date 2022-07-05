@@ -1,5 +1,6 @@
 package jpabook.jpashop.service;
 
+import jpabook.jpashop.controller.BookForm;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
@@ -7,7 +8,6 @@ import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.exception.NotEnoughStockException;
 import jpabook.jpashop.repository.OrderRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +90,12 @@ class OrderServiceTest {
 
 
     private Book createBook() {
-        Book book = new Book("시골 JPA", 10000, 10);
+        BookForm bookForm = new BookForm();
+        bookForm.setName("시골 JPA");
+        bookForm.setPrice(10000);
+        bookForm.setStockQuantity(10);
+
+        Book book = Book.createBook(bookForm);
         em.persist(book);
         return book;
     }

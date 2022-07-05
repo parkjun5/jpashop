@@ -1,5 +1,6 @@
 package jpabook.jpashop.service;
 
+import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,12 @@ public class ItemService {
         return item.getId();
     }
 
+    @Transactional
+    public void updateItem(Long itemId, String name, int price, int stockQuantity) {
+        Item findItem = itemRepository.findOne(itemId);
+        findItem.changeItem(findItem, name, price, stockQuantity);
+    }
+
     public Item findOne(Long itemId) {
         return itemRepository.findOne(itemId);
     }
@@ -28,4 +35,5 @@ public class ItemService {
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
+
 }
