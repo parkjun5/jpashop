@@ -1,0 +1,53 @@
+#closeChart { display: none; }
+#color-gradient {
+    position: absolute;
+    margin-top: 0.3rem !important;
+    margin-left: -1rem;
+    display: none;
+    top: 75px;
+    z-index: 700;
+}
+.gradient-bar {
+    width: 300px !important;
+    left: calc(100vw - 310px);
+    top: -2px;
+    position: absolute;
+    padding: 0;
+    height: 10px;
+    background: linear-gradient(90deg,
+    rgb(158, 1, 66),
+    rgb(227, 84, 73),
+    rgb(254, 234, 156),
+    rgb(237, 248, 163),
+    rgb(158, 216, 164),
+    rgb(71, 159, 179),
+    rgb(94, 79, 162));
+}
+.gradient-values {
+    display: inline-block;
+    position: absolute;
+    color: white;
+    width: 300px;
+    left: calc(100vw - 310px);
+    top: -22px;
+    background: var(--deep-dark);
+    line-height: 1rem;
+}
+.gradient-values span {
+    display: inline-block;
+    font-weight: 200;
+    margin: 2.8px;
+}
+.chart-title {
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: 'Bebas Neue', 'Pretendard Variable', sans-serif;
+    display: none;
+}
+.order-content { color: var(--super-light); }
+#my-orders-archive p { display: none; }
+#my-orders-archive:hover p {
+    display: block; color: var(--navy); background: var(--light); font-size: 0.9rem;
+    padding: 13px; margin-top: -10px; margin-left: -16px; font-weight: 600;
+}
+#my-orders-archive:hover i { display: none; }

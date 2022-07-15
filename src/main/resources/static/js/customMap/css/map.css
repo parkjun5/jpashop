@@ -1,0 +1,199 @@
+.map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 500;
+}
+
+.ol-control button {
+    float: left;
+}
+
+.custom-map-control {
+    top: 4em;
+    left: 1em;
+}
+
+.dateRangeStyle {
+    font-size: smaller;
+}
+
+.white-background {
+    width: 50em !important;
+    background: var(--deep-dark);
+    border: 1px solid var(--medium);
+    padding: 20px;
+    margin-top: calc(100vh - 493px);
+    margin-left: calc(50vw - 25em);
+}
+
+.mapSpinner {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: calc(100vh - 40px);
+    top: 0;
+    left: 0;
+    display: none;
+    position: absolute;
+    z-index: 600;
+}
+
+.mapSpinner div {
+    display: block;
+}
+
+.mapSpinner span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.mapSpinner img {
+    padding: 1em;
+    width: 7rem;
+    margin-left: calc(50vw - 3.5rem);
+    margin-top: calc(50vh - 5rem);
+    position: absolute;
+}
+
+#chartStyleStorage {
+    width: 0;
+    position: absolute;
+    z-index: 501;
+}
+
+#dateRange {
+    height: 35px;
+    border: 1px solid lightgray;
+    text-align: center;
+    margin-left: 1px;
+    margin-top: 1px;
+    font-family: "Pretendard Variable", sans-serif;
+    width: calc(100% - 20px);
+    font-size: 9pt;
+    color: black;
+}
+
+#dateRange:hover {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#calculatePolygon {
+    background: var(--navy);
+    color: var(--super-light);
+    width: calc(50% - 15px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    height: 34px;
+    margin-left: 10px;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+#calculatePolygon:hover {
+    background: var(--light);
+    color: var(--dark);
+}
+
+#searchModal {
+    width: 280px;
+    height: 140px;
+    background: var(--dark);
+    position: absolute;
+    padding: 10px;
+    text-align: center;
+}
+
+#searchModal > h4 {
+    font-weight: 300 !important;
+    margin-bottom: 10px;
+}
+
+#drawPolygonToggle {
+    width: 34px;
+    height: 34px;
+    background: var(--dark);
+    color: var(--super-light);
+    margin-left: -10px;
+    margin-top: 0;
+}
+
+#drawPolygonIcon {
+    font-size: 1.4rem;
+    display: inline-block;
+    position: relative;
+}
+
+#customMapControl {
+    background: none;
+}
+
+#stopDrawingButton {
+    width: calc(50% - 15px);
+    height: 34px;
+    margin-left: 10px;
+    margin-top: 8px;
+    font-weight: 600;
+    background: var(--light);
+    color: var(--navy);
+}
+
+#stopDrawingButton:hover {
+    color: var(--super-light);
+    background: var(--navy);
+}
+
+#polygonHandingTooltip {
+    background: var(--dark);
+    color: var(--light);
+    height: 34px !important;
+    font-size: 0.9rem;
+    padding: 5px;
+    font-weight: 600;
+    position: absolute;
+    width: 150px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Pretendard Variable', sans-serif;
+    line-height: 1.6rem;
+    display: none;
+    margin-left: 44px;
+    margin-top: -25px;
+}
+
+#shape {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-right: 16px solid var(--dark);
+    border-bottom: 8px solid transparent;
+    margin-top: 9px;
+    margin-left: 35px;
+    display: none;
+}
+
+#drawPolygonToggle:hover #polygonHandingTooltip {
+    display: inline-block;
+    animation: fade_in_show 0.3s;
+}
+
+#drawPolygonToggle:hover #shape {
+    display: inline-block;
+    animation: fade_in_show 0.3s;
+}
+
+#drawPolygonToggle:hover #drawPolygonIcon {
+    margin-top: -20px;
+    top: -6px !important;
+}
+
+@keyframes fade_in_show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

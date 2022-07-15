@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+<div class="container">
+    <div id="map" class="map" style="z-index: 500"></div>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{vendor/open-layers/css/ol.css}">
+    <link rel="stylesheet" th:href="@{vendor/date-range-picker/css/daterangepicker.css}">
+    <link rel="stylesheet" th:href="@{vendor/alertify/css/alertify.css}">
+    <link rel="stylesheet" th:href="@{/js/customMap/css/map.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script th:inline="javascript">
+        const geoserverUrl = [[${geoserverUrl}]] + '';
+        const geoserverWorkspaceName =  [[${geoserverWorkspaceName}]] + '';
+        const bingMapApiKey = [[${bingMapApiKey}]] + '';
+        const geoServerLayerUuid = [[${geoServerLayerUuid}]] + '';
+
+    </script>
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+
+
+    <script th:src="@{/vendor/jquery-ui/jquery-ui.min.js}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- ChartJS -->
+    <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+    <!-- JQVMap -->
+    <script th:src="@{/vendor/jqvmap/jquery.vmap.min.js}"></script>
+    <script th:src="@{/vendor/jqvmap/maps/jquery.vmap.usa.js}"></script>
+    <!-- jQuery Knob Chart -->
+    <script th:src="@{/vendor/jquery-knob/jquery.knob.min.js}"></script>
+    <!-- daterangepicker -->
+    <script th:src="@{/vendor/moment/moment.min.js}"></script>
+
+
+    <script th:src="@{/vendor/cdnjs/proj4js-combined.min.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+
+    <script th:src="@{/js/customMap/js/var/globalVar.js}"></script>
+    <script th:src="@{/js/customMap/js/localizationLanguage.js}"></script>
+
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+
+    <script th:src="@{/vendor/open-layers/js/ol.js}"></script>
+    <script th:src="@{/vendor/date-range-picker/js/daterangepicker.js}"></script>
+
+    <script th:src="@{/js/customMap/js/customControl.js}"></script>
+    <script th:src="@{/js/customMap/js/basicMap.js}"></script>
+    <script th:src="@{/js/customMap/js/chart.js}"></script>
+    <script th:src="@{/js/customMap/js/subsidenceFeature.js}"></script>
+    <script th:src="@{/js/customMap/js/subsidencePointLayer.js}"></script>
+    <script th:src="@{/js/customMap/js/subsidenceLoader.js}"></script>
+
+</div> <!-- /container -->
+
+</body>
+</html>
