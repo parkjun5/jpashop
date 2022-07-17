@@ -29,7 +29,7 @@ public class HelloController {
 
     private final LightingService lightingService;
 
-    @GetMapping("/")
+    @GetMapping("/map")
     public String hello(Model model) {
         model.addAttribute("geoserverUrl", geoserverUrl);
         model.addAttribute("geoserverWorkspaceName", geoserverWorkspaceName);

@@ -4,12 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//@Entity
-
+@Entity
 @Getter @Setter
 public class Member {
     @Id @GeneratedValue
@@ -21,7 +21,7 @@ public class Member {
     @Embedded
     private Address address;
 
-//    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
 

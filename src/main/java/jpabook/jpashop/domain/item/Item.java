@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Getter @Setter
@@ -27,8 +27,8 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
-//    @ManyToMany(mappedBy = "items")
-//    private List<Category> categories = new ArrayList<>();
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
 
     // ==비지니스 로직 ==//
     protected Item(String name, int price, int stockQuantity) {
