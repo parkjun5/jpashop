@@ -16,7 +16,7 @@ public class initDb {
 
     private final InitService initService;
 
-//    @PostConstruct
+    @PostConstruct
     public void init() {
         initService.dbInit1();
         initService.dbInit2();

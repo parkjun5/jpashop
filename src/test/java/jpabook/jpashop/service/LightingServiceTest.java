@@ -47,7 +47,7 @@ class LightingServiceTest {
     @Test
     void findCountAllDistinctByDistrict_code() throws Exception {
         //given
-        List<CountLightning> countAllDistinctByDistrict_code = lightingService.getCalculateLightnings();
+        List<CountLightning> countAllDistinctByDistrict_code = lightingService.getCalculateLightnings("grid");
         //when
         System.out.println("countAllDistinctByDistrict_code = " + countAllDistinctByDistrict_code.get(0).getDistrict_code());
         System.out.println("countAllDistinctByDistrict_code = " + countAllDistinctByDistrict_code.get(0).getGeomCoordinates());
