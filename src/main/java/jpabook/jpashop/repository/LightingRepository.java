@@ -3,6 +3,7 @@ package jpabook.jpashop.repository;
 import jpabook.jpashop.domain.Lightning;
 import jpabook.jpashop.domain.LightningData;
 import jpabook.jpashop.repository.dto.CountLightning;
+import jpabook.jpashop.repository.dto.GridValues;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +16,6 @@ public class LightingRepository {
 
     private final EntityManager em;
 
-
     public List<Lightning> findAll() {
         return em.createQuery("select l from Lightning l where l.district_code > 1", Lightning.class)
                 .setMaxResults(10)
@@ -24,9 +24,16 @@ public class LightingRepository {
 
     public List<CountLightning> findAllDistinctAndCountByDistrict_code() {
         return em.createQuery(
-                        "select new jpabook.jpashop.repository.dto.CountLightning(l.district_code, count(l.district_code)) from Lightning l where l.district_code > 1 group by l.district_code"
+                        "select new jpabook.jpashop.repository.dto.CountLightning(l.district_code, count(l.district_code)) from Lightning l " +
+                                "where l.district_code > 1 group by l.district_code"
                         , CountLightning.class)
                 .getResultList();
     }
 
+    public List<GridValues> findGridXAndGridY() {
+        return em.createQuery(
+                        "select new jpabook.jpashop.repository.dto.GridValues(l.grid_x,l.grid_y) from Lightning l "
+                        , GridValues.class)
+                .getResultList();
+    }
 }

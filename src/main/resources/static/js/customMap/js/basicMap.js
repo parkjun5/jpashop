@@ -201,7 +201,7 @@ const moveZoomToCenter = (centerCoordinate) => {
     map.getView().setZoom(17);
 }
 
-const getBaseMap = () => {
+const getBaseKorMap = () => {
     const layerSource = new ol.source.TileWMS({
         url: geoserverUrl + '/landslidencam/wms',
         params: {
@@ -224,3 +224,25 @@ const getBaseMap = () => {
     });
 }
 
+const getBaseGridMap = () => {
+    const layerSource = new ol.source.TileWMS({
+        url: geoserverUrl + '/landslidencam/wms',
+        params: {
+            'FORMAT': 'image/png',
+            'VERSION': '1.1.0',
+            crossOrigin: 'anonymous',
+            tiled: true,
+            'LAYERS': 'landslidencam:kor_grid_base_map',
+        },
+        serverType: 'geoserver',
+        projection: 'EPSG:4326'
+    });
+
+    return new ol.layer.Tile({
+        source: layerSource,
+        layerId: 'baseMap',
+        title: 'baseMap',
+        visible: true,
+        zIndex: 100
+    });
+}

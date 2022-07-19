@@ -18,15 +18,14 @@ public class Book extends Item {
     private String isbn;
 
 
-//    public Book(String name, int price, int stockQuantity) {
-//        super(name, price, stockQuantity);
-//    }
+    public Book(String name, int price, int stockQuantity) {
+        super(name, price, stockQuantity);
+    }
 
     //  ---- 생성 매서드  ------//
 
     public static Book createBook(BookForm bookForm) {
         Book book = new Book();
-        book.setId(bookForm.getId());
         book.setName(bookForm.getName());
         book.setPrice(bookForm.getPrice());
         book.setStockQuantity(bookForm.getStockQuantity());

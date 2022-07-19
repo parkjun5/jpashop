@@ -185,9 +185,10 @@ const selectClick = new ol.interaction.Select({
     style: selected,
 });
 
-const mappingFeatureToDB = () => {
+const mappingFeatureToDB = (mapType) => {
     fetch('/match/lightnings', {
-        method:'POST'
+        method:'POST',
+        body: mapType
     })
         .then(response => response.json())
         .then(countLightning => {
@@ -197,3 +198,24 @@ const mappingFeatureToDB = () => {
             addPointLayerToMap(countLightning);
         })
 };
+
+// const getOnlyToDB = () => {
+//     fetch('/lightnings', {
+//         method:'GET',
+//     })
+//         .then(response => response.json())
+//         .then(countLightning => {
+//             if(countLightning === null) {
+//                 return null;
+//             }
+//             fetch('./json/grid_json.geojsonl.json')
+//                 .then(response => {
+//                     console.log(response);
+//                     return response.json();
+//                 })
+//                 .then(responseJson => {
+//                     console.log(responseJson)
+//                     addPointLayerToMap(countLightning, responseJson);
+//                 })
+//         })
+// };

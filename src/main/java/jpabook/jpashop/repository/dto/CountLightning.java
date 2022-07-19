@@ -8,6 +8,7 @@ import lombok.Setter;
 public class CountLightning {
     private int district_code;
     private Long cnt;
+    private String gridId;
 
     private JsonArray geomCoordinates;
 
@@ -18,4 +19,10 @@ public class CountLightning {
         this.district_code = district_code;
         this.cnt = cnt;
     }
+
+    public CountLightning(String gridId, Long cnt) {
+        this.gridId = gridId;
+        this.cnt = cnt;
+    }
+
 }

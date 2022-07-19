@@ -13,22 +13,15 @@ $(function() {
         ? navigator.languages[0]
         :'vi';
     layers.push(generateOSMTileLayer());
-    layers.push(getBaseMap());
+    layers.push(getBaseGridMap());
+    // layers.push(getBaseKorMap());
     layers.push(generateVectorLayer())
 
     map = generateMap(layers);
     moment.locale(userLanguage);
     $("#dateRange").daterangepicker();
 
-    const sigunguLayer = "kor_map_by_sigungu";
-    const smallerLayer = "kor_map_by_dong";
-    const lontSmallerLayer = "kor_dong_map_by_lonlat"
-    mappingFeatureToDB();
-    // getFeatureData(geoserverWorkspaceName, lontSmallerLayer);
-
-    // const canvas = document.getElementById('myChart').getContext('2d');
-
-    // chart = generateChart(canvas);
+    mappingFeatureToDB("dong");
 
     if (geoServerLayerUuid !== "null") {
         callGeoServerLayerByUuid(geoServerLayerUuid);

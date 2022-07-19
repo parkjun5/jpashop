@@ -23,7 +23,7 @@ class ConverterUtilTest {
     @Test
     void readGeoJsonTest() throws Exception {
         //given
-        Map<String, JsonArray> result = converterUtil.readShpOrJson();
+        Map<String, JsonArray> result = converterUtil.readDongJson();
         //when
 
         //then

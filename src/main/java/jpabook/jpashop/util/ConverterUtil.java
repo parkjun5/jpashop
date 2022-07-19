@@ -4,6 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import jpabook.jpashop.domain.MapPointInfo;
+import jpabook.jpashop.repository.dto.CountLightning;
+import jpabook.jpashop.repository.dto.GridValues;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.geotools.data.shapefile.dbf.DbaseFileHeader;
@@ -128,25 +130,45 @@ public class ConverterUtil {
         return geometryFactory.createPolygon(points.toArray(new Coordinate[] {}));
     }
 
+    public Map<String, JsonArray> readGridJson() {
+        return getStringJsonArrayMap("D:\\data\\jsonConvert\\grid_geojson.geojsonl.json", "GRID_ID");
+    }
 
-    public Map<String, JsonArray> readShpOrJson() {
-        try (BufferedReader br = new BufferedReader(new FileReader("D:\\data\\jsonConvert\\ee.geojsonl.json"))) {
-            return readAndConvert(br);
+    public Map<String, JsonArray> readDongJson() {
+        return getStringJsonArrayMap("D:\\data\\jsonConvert\\ee.geojsonl.json", "ADM_DR_CD");
+    }
+
+    private Map<String, JsonArray> getStringJsonArrayMap(String fileName, String featureId) {
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            Map<String,JsonArray> dataMap= new HashMap<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                JsonObject jsonObject = JsonParser.parseString(line).getAsJsonObject();
+                String admDrCd = jsonObject.get("properties").getAsJsonObject().get(featureId).getAsString();
+                JsonArray geomCoordinates = jsonObject.get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray();
+                dataMap.put(admDrCd, geomCoordinates);
+            }
+            return dataMap;
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
-    public Map<String, JsonArray> readAndConvert(BufferedReader br) throws IOException {
-        String line;
-        Map<String,JsonArray> dataMap= new HashMap<>();
+    public Map<String, Integer> convertXyToGridId(List<GridValues> countLightnings) {
+        HashMap<String, Integer> countMap = new HashMap<>();
+        countLightnings.forEach( countLightning -> {
+            if (countLightning.getGridX() <= 0 || countLightning.getGridY() <= 0) {
+                return;
+            }
+            String gridId = String.format("X%03dY%03d", countLightning.getGridX(), countLightning.getGridY());
 
-        while ((line = br.readLine()) != null) {
-            JsonObject jsonObject = JsonParser.parseString(line).getAsJsonObject();
-            String admDrCd = jsonObject.get("properties").getAsJsonObject().get("ADM_DR_CD").getAsString();
-            JsonArray geomCoordinates = jsonObject.get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray();
-            dataMap.put(admDrCd, geomCoordinates);
-        }
-        return dataMap;
+            if ( countMap.containsKey(gridId)) {
+                countMap.put(gridId, countMap.get(gridId) + 1);
+            } else {
+                countMap.put(gridId, 1);
+            }
+        });
+        return countMap;
     }
 }
