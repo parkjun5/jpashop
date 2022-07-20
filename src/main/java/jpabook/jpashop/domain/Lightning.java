@@ -1,12 +1,9 @@
 package jpabook.jpashop.domain;
 
 import lombok.Getter;
-import org.locationtech.jts.geom.Polygon;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter

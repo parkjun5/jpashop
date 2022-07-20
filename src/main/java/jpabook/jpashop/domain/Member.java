@@ -24,6 +24,12 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
+    public static Member createMember(String name, Address address) {
+        Member member = new Member();
+        member.name = name;
+        member.address = address;
+        return member;
+    }
 
     @Override
     public boolean equals(Object o) {
