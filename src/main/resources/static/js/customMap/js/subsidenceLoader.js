@@ -12,7 +12,7 @@ $(function() {
     userLanguage = navigator.languages && navigator.languages.length
         ? navigator.languages[0]
         :'vi';
-    layers.push(generateOSMTileLayer());
+    // layers.push(generateOSMTileLayer());
     layers.push(getBaseGridMap());
     // layers.push(getBaseKorMap());
     layers.push(generateVectorLayer())
@@ -21,7 +21,9 @@ $(function() {
     moment.locale(userLanguage);
     $("#dateRange").daterangepicker();
 
-    mappingFeatureToDB("dong");
+    // mappingFeatureToDB("grid");
+    // mappingFeatureToDB("dong");
+    mappingJacksonToDB("dong");
 
     if (geoServerLayerUuid !== "null") {
         callGeoServerLayerByUuid(geoServerLayerUuid);

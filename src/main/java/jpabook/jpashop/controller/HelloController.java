@@ -1,17 +1,14 @@
 package jpabook.jpashop.controller;
 
-import jpabook.jpashop.domain.Lightning;
 import jpabook.jpashop.repository.dto.CountLightning;
+import jpabook.jpashop.repository.dto.JacksonLighting;
 import jpabook.jpashop.service.LightingService;
 import jpabook.jpashop.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -45,10 +42,22 @@ public class HelloController {
     }
 
     @ResponseBody
-    @PostMapping("match/lightnings")
-    public List<CountLightning> addCountToLightning(@RequestBody(required = false) String mapType) {
+    @GetMapping("/match/lightnings")
+    public List<CountLightning> addCountToLightning(@RequestParam String mapType) {
         return lightingService.getCalculateLightnings(mapType);
     }
+
+    @ResponseBody
+    @GetMapping("/match/jackson")
+    public List<JacksonLighting> addCountToJackson(@RequestParam String mapType) {
+        if(mapType.equals("grid")){
+            return lightingService.jacksonGridLightnings();
+
+        } else {
+            return lightingService.jacksonDongLightnings();
+        }
+    }
+
     @ResponseBody
     @GetMapping("lightnings")
     public List<CountLightning> getLightnings() {

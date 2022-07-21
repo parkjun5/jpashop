@@ -1,27 +1,4 @@
-function initProj() {
-    // 경위도
-    proj4.defs('EPSG:4326', '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs');
-
-    // google 좌표계
-    proj4.defs('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs');
-
-    // UTM-K 좌표계
-    proj4.defs('EPSG:5179', '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs');
-
-    // 중부원점(Bessel)
-    proj4.defs('EPSG:2097', '+proj=tmerc +lat_0=38 +lon_0=127 +k=1 +x_0=200000 +y_0=500000 +ellps=bessel +units=m +no_defs');
-
-    // 보정된 중부원점(Bessel)
-    proj4.defs('EPSG:5174', '+proj=tmerc +lat_0=38 +lon_0=127.0028902777778 +k=1 +x_0=200000 +y_0=500000 +ellps=bessel +units=m +no_defs +towgs84=-115.80,474.99,674.11,1.16,-2.31,-1.63,6.43');
-
-    // 중부원점(GRS80) [200,000 500,000]
-    proj4.defs('EPSG:5181', '+proj=tmerc +lat_0=38 +lon_0=127 +k=1 +x_0=200000 +y_0=500000 +ellps=GRS80 +units=m +no_defs');
-
-    // 중부원점(GRS80) [200,000 600,000]
-    proj4.defs('EPSG:5186', '+proj=tmerc +lat_0=38 +lon_0=127 +k=1 +x_0=200000 +y_0=600000 +ellps=GRS80 +units=m +no_defs');
-}
-
-    const generateMap = (inputLayers) => {
+ const generateMap = (inputLayers) => {
     const newMap = new ol.Map({
         controls: ol.control.defaults()
             .extend([new CustomControl()]),
@@ -30,10 +7,10 @@ function initProj() {
         view: new ol.View({
             center: [127.9, 36.5], //ol.proj.transform([127.9, 36.5],, 'EPSG:4326', 'EPSG:3857'),
             projection: 'EPSG:4326',
-            zoom: 12,
+            zoom: 8,
             // extent: [127.0, 33, 135.0, 39.0], //ol.proj.transformExtent([100.0, -15, 134.0, 45.0], 'EPSG:4326', 'EPSG:3857'),
-            maxZoom: 14,
-            minZoom: 6
+            maxZoom: 12,
+            minZoom: 7
         })
     });
     view = newMap.getView();
@@ -232,7 +209,7 @@ const getBaseGridMap = () => {
             'VERSION': '1.1.0',
             crossOrigin: 'anonymous',
             tiled: true,
-            'LAYERS': 'landslidencam:kor_grid_base_map',
+            'LAYERS': 'landslidencam:kor_base_map',
         },
         serverType: 'geoserver',
         projection: 'EPSG:4326'

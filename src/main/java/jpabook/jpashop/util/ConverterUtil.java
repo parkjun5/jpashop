@@ -1,10 +1,10 @@
 package jpabook.jpashop.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import jpabook.jpashop.domain.MapPointInfo;
-import jpabook.jpashop.repository.dto.CountLightning;
 import jpabook.jpashop.repository.dto.GridValues;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -128,6 +128,38 @@ public class ConverterUtil {
         }
 
         return geometryFactory.createPolygon(points.toArray(new Coordinate[] {}));
+    }
+
+    public Map<String, List<List<List<List<Float>>>>> readAsJacksonGrid() {
+        Map<String, List<List<List<List<Float>>>>> dataMap;
+        try (BufferedReader br = new BufferedReader(new FileReader("D:\\data\\jsonConvert\\grid_geojson.geojsonl.json"))) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            dataMap = new HashMap<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                JacksonTest jacksonTest = objectMapper.readValue(line, JacksonTest.class);
+                dataMap.put(jacksonTest.getProperties().getGridId(), jacksonTest.getGeometry().getCoordinates());
+            }
+        } catch (IOException e) {
+            throw new IllegalArgumentException(String.format("파일 데이터 json 변환 중 오류 발생 : %s" ,e.getMessage()));
+        }
+        return dataMap;
+    }
+
+    public Map<String, List<List<List<List<Float>>>>> readAsJacksonDong() {
+        Map<String, List<List<List<List<Float>>>>> dataMap;
+        try (BufferedReader br = new BufferedReader(new FileReader("D:\\data\\jsonConvert\\ee.geojsonl.json"))) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            dataMap = new HashMap<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                JacksonDongJson jacksonDongJson = objectMapper.readValue(line, JacksonDongJson.class);
+                dataMap.put(jacksonDongJson.getJsonDongProperties().getAdmDrCd(), jacksonDongJson.getGeometry().getCoordinates());
+            }
+        } catch (IOException e) {
+            throw new IllegalArgumentException(String.format("파일 데이터 json 변환 중 오류 발생 : %s" ,e.getMessage()));
+        }
+        return dataMap;
     }
 
     public Map<String, JsonArray> readGridJson() {

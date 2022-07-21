@@ -10,34 +10,47 @@ import java.time.LocalDateTime;
 @Table(name = "lightning")
 public class Lightning {
 
-    @Id
+    @Id @GeneratedValue
     @Column(name = "strokes_id")
     private Long id;
     private LocalDateTime createBy;
     private int nsfrac;
-//    private Polygon wkt_geom;
     private float longitude;
     private float latitude;
     private float height;
     private float intensity;
-    private float observational_error;
+    private float observationalError;
     private Short discharge;
-    private Short sensor_num;
-//    @ElementCollection
-//    private int[] sensors;
+    private Short sensorNum;
     private float quality;
-    private Long flash_id;
-    private Short grid_x;
-    private Short grid_y;
-    private int district_code;
+    private Long flashId;
+    private Short gridX;
+    private Short gridY;
+    private int districtCode;
 
     protected Lightning() {
 
     }
 
-    public static Lightning createLightning() {
 
-        return null;
+    public static Lightning createLightning(int nsfrac, float longitude, float latitude, float height, float intensity,
+                                            float observationalError, Short discharge, Short sensorNum, float quality, Long flashId, Short gridX, Short gridY, int districtCode) {
+        Lightning lightning = new Lightning();
+        lightning.createBy = LocalDateTime.now();
+        lightning.nsfrac = nsfrac;
+        lightning.longitude = longitude;
+        lightning.latitude = latitude;
+        lightning.height = height;
+        lightning.intensity = intensity;
+        lightning.observationalError = observationalError;
+        lightning.discharge = discharge;
+        lightning.sensorNum = sensorNum;
+        lightning.quality = quality;
+        lightning.flashId = flashId;
+        lightning.gridX = gridX;
+        lightning.gridY = gridY;
+        lightning.districtCode = districtCode;
+
+        return lightning;
     }
-
 }

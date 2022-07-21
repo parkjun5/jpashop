@@ -21,7 +21,6 @@ import javax.transaction.Transactional;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional
 class OrderServiceTest {

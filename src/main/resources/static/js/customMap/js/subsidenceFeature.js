@@ -186,9 +186,21 @@ const selectClick = new ol.interaction.Select({
 });
 
 const mappingFeatureToDB = (mapType) => {
-    fetch('/match/lightnings', {
-        method:'POST',
-        body: mapType
+    fetch('/match/lightnings?mapType='+mapType, {
+        method:'GET',
+    })
+        .then(response => response.json())
+        .then(countLightning => {
+            if(countLightning === null) {
+                return null;
+            }
+            addPointLayerToMap(countLightning);
+        })
+};
+
+const mappingJacksonToDB = (mapType) => {
+    fetch('/match/jackson?mapType='+mapType, {
+        method:'GET',
     })
         .then(response => response.json())
         .then(countLightning => {
